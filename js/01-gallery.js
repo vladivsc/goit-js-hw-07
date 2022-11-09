@@ -2,7 +2,6 @@ import { galleryItems } from "./gallery-items.js";
 
 const refs = {
   galleryBox: document.querySelector(".gallery"),
-  body: document.body,
 };
 
 function createGalleryItemsMarkup(items) {
@@ -36,12 +35,14 @@ function onImageClick(evt) {
 
   const originalImage = evt.target.dataset.source;
 
+  // Open modal
   const instance = basicLightbox.create(`
     <img src="${originalImage}" >
 `);
   instance.show();
 
-  refs.galleryBox.addEventListener("keydown", () => {
+  // Close modal
+  refs.galleryBox.addEventListener("keydown", (evt) => {
     if (evt.code === "Escape") {
       instance.close();
     }
